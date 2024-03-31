@@ -21,17 +21,26 @@ import time
 mySolo = solo.SoloMotorControllerUart("/dev/ttyACM0", 0, solo.UART_BAUD_RATE.RATE_937500)
 
 # loop actions
-while True:
+
+count = 0
+sum = 0
+while count < 5:
     # reading
+
     st = time.time()
     speed, error = mySolo.get_speed_feedback()
     et = time.time()
     # print
+    
     print("Read from SOLO: " + str(speed))
-    print("Error: " + str(error))
     elapsed_time = et - st
     print('Execution time:', elapsed_time, 'seconds')
-    time.sleep(1)
+
+    count = count +1
+    sum = sum + elapsed_time
+
+average = sum/count
+print('Average Execution time:', average, 'seconds')
 
 #ensure close the serial
 mySolo.disconnect() 
