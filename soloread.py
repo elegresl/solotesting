@@ -23,12 +23,14 @@ mySolo = solo.SoloMotorControllerUart("/dev/ttyACM0", 0, solo.UART_BAUD_RATE.RAT
 # loop actions
 while True:
     # reading
+    st = time.time()
     speed, error = mySolo.get_speed_feedback()
-
+    et = time.time()
     # print
     print("Read from SOLO: " + str(speed))
     print("Error: " + str(error))
-
+    elapsed_time = et - st
+    print('Execution time:', elapsed_time, 'seconds')
     time.sleep(1)
 
 #ensure close the serial
