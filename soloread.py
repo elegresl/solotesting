@@ -23,10 +23,10 @@ mySolo = solo.SoloMotorControllerUart("/dev/ttyACM0", 0, solo.UART_BAUD_RATE.RAT
 # loop actions
 while True:
     # reading
-    busVoltage, error = mySolo.get_bus_voltage()
+    speed, error = mySolo.get_speed_feedback
 
     # print
-    print("Read from SOLO: " + str(busVoltage))
+    print("Read from SOLO: " + str(speed))
     print("Error: " + str(error))
 
     time.sleep(1)
